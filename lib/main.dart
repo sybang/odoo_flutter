@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'widget_alert_dialog.dart';
 import 'package:odoo_flutter/widget_ordinary_listview.dart';
 import 'package:odoo_flutter/widget_cut_line_listview.dart';
+import 'dialog_widget.dart';
+import 'boxdecoration_widget.dart';
+import 'input_widget.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,9 +29,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    final List itemList = new List();
-    itemList.add('普通ListView');
-    itemList.add('带有分割线ListView');
     return Scaffold(
       appBar: AppBar(title: Text('OdooFlutter')),
       body: Container(
@@ -39,10 +38,10 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: EdgeInsets.all(15),
               child: GestureDetector(
                 onTap: () {
-                  _clickItem(_testData(), position);
+                  _clickItem(context, _testData(), position);
                 },
                 child: Text(
-                  itemList[position],
+                  _homeData()[position],
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -52,66 +51,60 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           },
           separatorBuilder: (BuildContext context, int position) {
-            return new Container(
-              height: 1.0,
-              color: Colors.black12,
-            );
+            if (position == 2) {
+              return new Container(
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      height: 1.0,
+                      color: Colors.black12,
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                      height: 55,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          renderCircular(),
+                          renderCircularNoun(),
+                          renderChangeGradually(),
+                          renderShadow(),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 1.0,
+                      color: Colors.black12,
+                    ),
+                    renderSearch(context),
+                    Container(
+                      height: 1.0,
+                      color: Colors.black12,
+                    ),
+                  ],
+                ),
+              );
+            } else {
+              return new Container(
+                height: 1.0,
+                color: Colors.black12,
+              );
+            }
           },
-          itemCount: itemList.length,
+          itemCount: _homeData().length,
         ),
       ),
     );
-
-//
-//    final List contentList = new List();
-//    contentList.add('请勿删除!');
-//    contentList.add('请勿删除!');
-//    contentList.add('请勿删除!');
-//
-//    final List itemList = new List();
-//    itemList.add('item1');
-//    itemList.add('item2');
-//    itemList.add('item3');
-//    return Scaffold(
-//      appBar: AppBar(
-//        title: Text(widget.title),
-//      ),
-//      body: Center(
-//        child: Column(
-//          mainAxisAlignment: MainAxisAlignment.center,
-//          children: <Widget>[
-//            RaisedButton(
-//              child: Text('显示AlertDialog'),
-//              onPressed: () {
-////                Navigator.push(
-////                  context,
-////                  new MaterialPageRoute(
-////                      builder: (context) => new AlertDialogWidget(
-////                          '警告!重要的话说三遍', contentList, '关闭')),
-////                );
-//                Navigator.push(
-//                    context,
-//                    new MaterialPageRoute(
-//                        builder: (context) => new OrdinaryListView(
-//                              '普通 ListView',
-//                              itemList,
-//                            )));
-//              },
-//            ),
-//          ],
-//        ),
-//      ),
-//    );
   }
 
-  void _clickItem(List itemList, int position) {
+  void _clickItem(BuildContext context, List itemList, int position) {
     switch (position) {
       case 0:
         Navigator.push(
             context,
             new MaterialPageRoute(
                 builder: (context) => new OrdinaryListView(
-                      '普通ListView',
+                      _homeData()[0],
                       itemList,
                     )));
         break;
@@ -120,21 +113,33 @@ class _MyHomePageState extends State<MyHomePage> {
             context,
             new MaterialPageRoute(
                 builder: (context) => new CutLineListView(
-                      '带有分割线ListView',
+                      _homeData()[1],
                       itemList,
                     )));
         break;
+      case 2:
+        showAlertDialog(context, _homeData()[2], _testData(), '关闭');
+        break;
     }
   }
+}
 
-  List _testData() {
-    List listData = new List();
-    listData.add('item1');
-    listData.add('item2');
-    listData.add('item3');
-    listData.add('item4');
-    listData.add('item5');
-    listData.add('item6');
-    return listData;
-  }
+List _homeData() {
+  List itemList = new List();
+  itemList.add('普通ListView');
+  itemList.add('带有分割线ListView');
+  itemList.add('AlertDialog弹出框');
+  itemList.add('图片加载');
+  return itemList;
+}
+
+List _testData() {
+  List listData = new List();
+  listData.add('item1');
+  listData.add('item2');
+  listData.add('item3');
+  listData.add('item4');
+  listData.add('item5');
+  listData.add('item6');
+  return listData;
 }
