@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:odoo_flutter/picture_load_widget.dart';
 import 'package:odoo_flutter/widget_ordinary_listview.dart';
 import 'package:odoo_flutter/widget_cut_line_listview.dart';
 import 'dialog_widget.dart';
 import 'boxdecoration_widget.dart';
 import 'input_widget.dart';
+import 'listview_refresh_load.dart';
 
 void main() => runApp(MyApp());
 
@@ -81,6 +83,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 1.0,
                       color: Colors.black12,
                     ),
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          renderCircularPicture(),
+                          renderPicture(),
+                          renderCircularNounPicture(),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 1.0,
+                      color: Colors.black12,
+                    ),
                   ],
                 ),
               );
@@ -120,6 +136,13 @@ class _MyHomePageState extends State<MyHomePage> {
       case 2:
         showAlertDialog(context, _homeData()[2], _testData(), '关闭');
         break;
+      case 3:
+        Navigator.push(
+            context,
+            new MaterialPageRoute(
+                builder: (context) =>
+                    new ListViewRefreshLoad(_homeData()[3], itemList)));
+        break;
     }
   }
 }
@@ -129,7 +152,8 @@ List _homeData() {
   itemList.add('普通ListView');
   itemList.add('带有分割线ListView');
   itemList.add('AlertDialog弹出框');
-  itemList.add('图片加载');
+  itemList.add('ListView下拉刷新上拉加载');
+  itemList.add('GridView');
   return itemList;
 }
 
@@ -141,5 +165,6 @@ List _testData() {
   listData.add('item4');
   listData.add('item5');
   listData.add('item6');
+
   return listData;
 }
