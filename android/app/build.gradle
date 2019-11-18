@@ -44,6 +44,11 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.cn.test.odoo_flutter",
+                JPUSH_APPKEY : "d62ba7a457125500086f6860",  //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default",
+        ]
     }
 
     buildTypes {

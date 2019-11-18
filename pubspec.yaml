@@ -19,7 +19,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  amap_map_fluttify: ^0.5.1
+  permission_handler: ^3.2.2
+  oktoast:
+  decorated_flutter:
+  rongcloud_im_plugin: ^0.9.9
+  cached_network_image: ^1.1.1
+  image_picker: ^0.6.0+20
+  audio_recorder: ^1.0.1
+  path_provider: ^1.2.0
+  flutter_sound: ^1.4.2
+  jpush_flutter: ^0.1.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
@@ -46,6 +56,7 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
     - assets/pics/timg.jpeg
+    - assets/RCFlutterConf.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
