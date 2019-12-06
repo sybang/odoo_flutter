@@ -37,4 +37,8 @@ IOS:如果出现闪退或者地图加载不出来请检查权限文件 info.list
  ndk {
            //选择要添加的对应 cpu 类型的 .so 库。消息推送需要用到 根据情况选择
            abiFilters 'armeabi', 'armeabi-v7a' //'x86', 'x86_64', 'mips', 'mips64','arm64-v8a',
-       }       
+       } 
+ 
+ 日历：https://github.com/fluttercandies/flutter_custom_calendar
+ 文件云存储：https://gitee.com/lbx3067200952/qiniuyun
+ 七牛云Token token 需要用accessKey/secretKey生成    https://github.com/Zzzia/qiniuToken（这个试下了好像不行）   

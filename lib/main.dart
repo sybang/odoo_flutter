@@ -12,6 +12,10 @@ import 'ali_map.dart';
 import 'package:amap_map_fluttify/amap_map_fluttify.dart';
 import 'rongyunim/other/home_page.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
+import 'calendar.dart';
+import 'file_storage.dart';
+import 'widget_pay.dart';
+
 
 void main() async {
   runApp(MyApp());
@@ -216,6 +220,18 @@ class _MyHomePageState extends State<MyHomePage> {
           print("flutter 接收到推送: $res");
         });
         break;
+      case 7:
+        Navigator.push(context,
+            new MaterialPageRoute(builder: (context) => new MultiSelectStylePage( title: _homeData()[7]+'多选')));
+        break;
+      case 8:
+        Navigator.push(context,
+            new MaterialPageRoute(builder: (context) => new FileStoragePage( titleStr: _homeData()[8])));
+        break;
+      case 9:
+        Navigator.push(context,
+            new MaterialPageRoute(builder: (context) => new PayPage( titleStr: _homeData()[9])));
+        break;
     }
   }
 }
@@ -229,6 +245,9 @@ List _homeData() {
   itemList.add('高德地图amap_map_fluttify');
   itemList.add('融云即时通讯');
   itemList.add('极光推送本地消息测试(服务器推送需到极光后台模拟推送)');
+  itemList.add('日历组件');
+  itemList.add('文件存储');
+  itemList.add('支付');
   return itemList;
 }
 

@@ -45,5 +45,18 @@
     	<string>YES</string>
     	<key>NSLocationWhenInUseUsageDescription</key>
     	<string>需要定位权限</string>
+    <key>CFBundleURLTypes</key>
+        <array>
+            <dict>
+                <key>CFBundleURLName</key>
+                <string>alipay</string>
+                <key>CFBundleTypeRole</key>
+                <string>Editor</string>
+                <key>CFBundleURLSchemes</key>
+                <array>
+                    <string>YOUR APP SCHEME NAME</string>
+                </array>
+            </dict>
+        </array>
 </dict>
 </plist>
